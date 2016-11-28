@@ -48,9 +48,8 @@ int _start(SceSize args, void* argp) {
 	int i;
 	SceUID f;
 
-	f = sceIoOpenForDriver(argp, SCE_O_WRONLY | SCE_O_CREAT, 0777);
+	f = sceIoOpenForDriver(argp, SCE_O_WRONLY | SCE_O_CREAT | SCE_O_TRUNC, 0777);
 	if (f < 0) { return 0; }
-	sceIoLseekForDriver(f, 0, 2);
 	ptr[0] = DecImm32(&sceKernelGetMemBlockBaseForKernel) - 0x1F15;
 	InternalCheckMemBlockFlags = (fInternalCheckMemBlockFlags)(ptr[0] + 0x9BCD);
 	InternalGetMemBlockType = (fInternalGetMemBlockType)(ptr[0] + 0x162E1);
